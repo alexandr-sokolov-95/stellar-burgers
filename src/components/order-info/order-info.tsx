@@ -3,15 +3,24 @@ import { Preloader } from '../ui/preloader';
 import { OrderInfoUI } from '../ui/order-info';
 import { TIngredient } from '@utils-types';
 import { useAppSelector } from '../../services/store';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-export const OrderInfo: FC = () => {
-  /** TODO: взять переменные orderData и ingredients из стора */
-  const orderData = useAppSelector((state) =>
-    state.orders.orders.find(
-      (el) => el.number.toString() === useParams().number
-    )
-  );
+type TOrderInfoProps = {
+  userOrder?: boolean;
+};
+
+export const OrderInfo: FC<TOrderInfoProps> = ({ userOrder = false }) => {
+  const orderData = userOrder
+    ? useAppSelector((state) =>
+        state.user.orders.find(
+          (el) => el.number.toString() === useParams().number
+        )
+      )
+    : useAppSelector((state) =>
+        state.orders.orders.find(
+          (el) => el.number.toString() === useParams().number
+        )
+      );
 
   const ingredients: TIngredient[] = useAppSelector(
     (state) => state.ingridients.collection

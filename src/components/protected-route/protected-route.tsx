@@ -6,17 +6,30 @@ import { Preloader } from '@ui';
 
 type ProtectedRouteProps = {
   children: React.ReactElement;
+  anonymous?: boolean;
 };
 
-export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
-  const { isAuthChecked, data } = useAppSelector((state) => state.user);
+export const ProtectedRoute = ({
+  children,
+  anonymous = false
+}: ProtectedRouteProps) => {
+  const { isAuthChecked, isAuthenticated } = useAppSelector(
+    (state) => state.user
+  );
+
+  const location = useLocation();
+  const from = location.state?.from || '/';
 
   if (!isAuthChecked) {
     return <Preloader />;
   }
 
-  if (!data) {
-    return <Navigate to='/login' />;
+  if (anonymous && isAuthenticated) {
+    return <Navigate to={from} />;
+  }
+
+  if (!anonymous && !isAuthenticated) {
+    return <Navigate to='/login' state={{ from: location }} />;
   }
 
   return children;

@@ -82,10 +82,38 @@ const App = () => {
           }
         />
 
-        <Route path='/login' element={<Login />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/forgot-password' element={<ForgotPassword />} />
-        <Route path='/reset-password' element={<ResetPassword />} />
+        <Route
+          path='/login'
+          element={
+            <ProtectedRoute anonymous>
+              <Login />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='/register'
+          element={
+            <ProtectedRoute anonymous>
+              <Register />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='/forgot-password'
+          element={
+            <ProtectedRoute anonymous>
+              <ForgotPassword />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='/reset-password'
+          element={
+            <ProtectedRoute anonymous>
+              <ResetPassword />
+            </ProtectedRoute>
+          }
+        />
 
         <Route path='*' element={<NotFound404 />} />
       </Routes>
@@ -114,7 +142,7 @@ const App = () => {
             element={
               <ProtectedRoute>
                 <Modal title={'Детали Заказа'} onClose={handleModalClose}>
-                  <OrderInfo />
+                  <OrderInfo userOrder />
                 </Modal>
               </ProtectedRoute>
             }

@@ -16,13 +16,6 @@ export const Login: FC = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      const from = location.state?.from || '/profile';
-      navigate(from, { replace: true });
-    }
-  }, [isAuthenticated]);
-
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
     setError('');
