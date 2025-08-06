@@ -172,7 +172,11 @@ export const loginUserApi = (data: TLoginData) =>
   })
     .then((res) => checkResponse<TAuthResponse>(res))
     .then((data) => {
-      if (data?.success) return data;
+      if (data?.success) {
+        setCookie('accessToken', data.accessToken);
+        localStorage.setItem('refreshToken', data.refreshToken);
+        return data;
+      }
       return Promise.reject(data);
     });
 

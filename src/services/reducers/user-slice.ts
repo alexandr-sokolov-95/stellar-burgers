@@ -6,7 +6,7 @@ import {
   TLoginData,
   TRegisterData,
   updateUserApi
-} from '@api';
+} from '../../utils/burger-api';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { TOrder, TUser } from '@utils-types';
 import { deleteCookie, setCookie } from '../../utils/cookie';
@@ -36,8 +36,6 @@ export const loginUser = createAsyncThunk(
       if (!data?.success) {
         return rejectWithValue(data);
       }
-      setCookie('accessToken', data.accessToken);
-      localStorage.setItem('refreshToken', data.refreshToken);
       return data;
     } catch (error) {
       return rejectWithValue(error);

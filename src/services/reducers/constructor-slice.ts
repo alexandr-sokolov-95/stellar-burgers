@@ -1,19 +1,13 @@
-import { orderBurgerApi } from '@api';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TConstructorIngredient, TOrder } from '@utils-types';
-import { BooleanLiteral } from 'typescript';
-
-// type TIngredient = {
-//   _id: string;
-//   price: number;
-// };
+import { orderBurgerApi } from '../../utils/burger-api';
 
 type TConstructorItems = {
   bun: TConstructorIngredient | null;
   ingredients: TConstructorIngredient[];
 };
 
-type TConstructorState = {
+export type TConstructorState = {
   constructorItems: TConstructorItems;
   orderRequest: boolean;
   orderModalData: TOrder | null;
@@ -34,7 +28,7 @@ export const orderBurger = createAsyncThunk(
   }
 );
 
-const initialState: TConstructorState = {
+export const initialState: TConstructorState = {
   constructorItems: {
     bun: null,
     ingredients: []
