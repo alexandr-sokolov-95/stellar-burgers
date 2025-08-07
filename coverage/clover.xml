@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1754502942641" clover="3.2.0">
-  <project timestamp="1754502942641" name="All files">
+<coverage generated="1754562551434" clover="3.2.0">
+  <project timestamp="1754562551434" name="All files">
     <metrics statements="685" coveredstatements="394" conditionals="25" coveredconditionals="25" methods="29" coveredmethods="9" elements="739" coveredelements="428" complexity="0" loc="685" ncloc="685" packages="3" files="7" classes="7"/>
     <package name="services.reducers">
       <metrics statements="390" coveredstatements="298" conditionals="24" coveredconditionals="24" methods="10" coveredmethods="8"/>
